@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Details</title>
+</head>
+<body>
+	<h1>Detalles de ofertas</h1>
+	<h3 th:text="'Nombre: '+${v1.nombre}"></h3>
+	<h3 th:text="'Fecha: '+${v1.fecha}"></h3>
+	<h3 th:text="'Detalle: '+${v1.descripcion}"></h3>
+	<h3 th:text="'Salario: '+${v1.salario}"></h3>
+</body>
+</html>
