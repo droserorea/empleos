@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+<!-- 	<h1 th:text="${mensaje}">Bienvenido APP</h1> -->
+<!-- 	<h2>Hoy es [[${fecha}]]</h2> -->
+	<h1>Welcome</h1>
+	<h2>Oferta de Trabajo</h2>
+	<h3 th:text="'Tittle: '+${nombre}"></h3>
+	<h3 th:text="'Date '+${fechaPub}"></h3>
+	<h3 th:text="'Salary '+${salario}"></h3>
+	<h3 th:text="'Vig. '+${vigente}"></h3>
+</body>
+</html>
