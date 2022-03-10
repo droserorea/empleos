@@ -5,6 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Form Categorias</h1>
+	<h1>Creacion de Categorias</h1>
+	<form th:action="@{/categorias/save}" method="post">
+		<label for="nombre">Nombre:</label><br> 
+		<input type="text"  name="nombre" value=""><br> 
+		<label for="descripcion">Descripcion: </label><br> 
+		<input type="text" name="descripcion" value=""><br> 
+		<input	type="submit" value="Guardar">
+	</form>
 </body>
 </html>

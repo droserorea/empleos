@@ -5,17 +5,22 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.drosero.model.Vacante;
+import com.drosero.service.IVacanteService;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private IVacanteService serviceVacantes;
+	
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
-		List<Vacante> lista = getVacantes();
+		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);
 		return "tabla";
 	}
@@ -43,58 +48,11 @@ public class HomeController {
 	}
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
-//		model.addAttribute("mensaje","welcome to the app");
-//		model.addAttribute("fecha", new Date());
-		String nombre = "Aux. Contabilidad";
-		Date fechaPub = new Date();
-		double salario = 600;
-		boolean vigente = true;
-		
-		model.addAttribute("nombre", nombre);
-		model.addAttribute("fecha", fechaPub);
-		model.addAttribute("salario", salario);
-		model.addAttribute("vigente", vigente);
+		List<Vacante> lista = serviceVacantes.buscarTodas();
+		model.addAttribute("vacantes", lista);
 		return "home";
 	}
 	
-	private List<Vacante> getVacantes(){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
-		List<Vacante> lista = new LinkedList<Vacante>();
-		try {
-			Vacante v1 = new Vacante();
-			v1.setId(1);
-			v1.setNombre("Ing.1");
-			v1.setDescripcion("Ing. Ingeniero");
-			v1.setFecha(new Date());
-			v1.setSalario(700.0);
-			v1.setDestacado(1);
-			v1.setImagen("e1.jpg");
-			//v2
-			Vacante v2 = new Vacante();
-			v2.setId(2);
-			v2.setNombre("Ing.2");
-			v2.setDescripcion("Ing. Ingeniero 2");
-			v2.setFecha(new Date());
-			v2.setSalario(2200.0);
-			v2.setDestacado(0);
-			//v3
-			Vacante v3 = new Vacante();
-			v3.setId(3);
-			v3.setNombre("Ing.3");
-			v3.setDescripcion("Ing. Ingeniero 3");
-			v3.setFecha(new Date());
-			v3.setSalario(3300.0);
-			v3.setDestacado(1);
-			v3.setImagen("e3.jpg");
-			
-			//agregar objects
-			lista.add(v1);
-			lista.add(v2);
-			lista.add(v3);
-		} catch (Exception e) {
-			System.out.println("Error "+ e.getMessage());
-		}
-		return lista;
-	}
+	
 
 }
