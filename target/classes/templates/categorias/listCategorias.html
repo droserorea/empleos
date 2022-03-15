@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>Lista Categorias</h1>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
-</body>
+    <title>EmpleosApp | Listado de Categorías</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+<!--    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">-->
+    
+  </head>
+
+  <body>
+
+    <header th:insert="fragments/menu :: menu-principal"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Categorías</strong></h4>              
+          <div class="card-body">
+            <a class="btn btn-primary" th:href="@{/categorias/create}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <div th:if="${msgCat != null}" class='alert alert-success' th:text="${msgCat}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="todasCategorias:${todasCategorias}">
+                  <th th:text="${todasCategorias.id}"></th>
+                  <th th:text="${todasCategorias.nombre}"></th>
+                  <th th:text="${todasCategorias.descripcion}"></th>
+                  <td>
+                    <a th:href="@{/categorias/view/{id} (id=${todasCategorias.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro." ><i class="fa fa-file-o" aria-hidden="true"></i>
+                    <span class="iconify-inline" data-icon="fa-solid:edit"></span>Editar</a>
+                    <a th:href="@{/categorias/delete(id=${todasCategorias.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro.">
+                    <span class="iconify-inline" data-icon="fa-solid:trash"></span>Eliminar</a>
+                  </td>
+                </tr>
+               
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>   
+  </body>
 </html>

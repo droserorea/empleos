@@ -13,6 +13,8 @@
 	<!-- Custom styles for this template -->
 	<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
 	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+<!--	<script src="https://your-site-or-cdn.com/fontawesome/v5.15.4/js/all.js" data-auto-a11y="true" ></script>-->
+	
 </head>
 
   <body>
@@ -27,6 +29,7 @@
           <div class="card-body">
             <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
@@ -49,14 +52,16 @@
                   	<span th:unless="${todasVacantes.destacado==1}" class="badge bg-danger">No</span>
 				  </td>
                   <td>
-                    <a th:href="@{/vacantes/view/{id} (id=${todasVacantes.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/vacantes/delete(id=${todasVacantes.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/view/{id} (id=${todasVacantes.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro." ><i class="fa fa-file-o" aria-hidden="true"></i>
+                    <span class="iconify-inline" data-icon="fa-solid:edit"></span>Editar</a>
+                    <a th:href="@{/vacantes/delete(id=${todasVacantes.id}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i>
+                    <span class="iconify-inline" data-icon="fa-solid:trash"></span>Eliminar</a>
                   </td>
                 </tr>
                                
               </tbody>
             </table>
-            
+
           </div>
         </div>
       </div> <!-- /container -->
@@ -69,6 +74,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>   
   </body>
 </html>
